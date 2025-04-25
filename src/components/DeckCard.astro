@@ -1,0 +1,63 @@
+---
+import type { MagicColor } from '../types/deck';
+
+interface Props {
+  name: string;
+  commander: string;
+  format: string;
+  description: string;
+  colors: MagicColor[];
+  image?: string;
+}
+
+const { name, commander, format, description, colors, image } = Astro.props;
+
+const getColorClass = (color: MagicColor): string => {
+  const colorMap: Record<MagicColor, string> = {
+    W: 'from-yellow-200 to-yellow-100',
+    U: 'from-blue-500 to-blue-400',
+    B: 'from-slate-800 to-slate-700',
+    R: 'from-red-600 to-red-500',
+    G: 'from-green-600 to-green-500',
+  };
+  return colorMap[color];
+};
+---
+
+<div class="group glass-card rounded-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+  <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-black opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+  
+  <div class="relative p-6">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <h3 class="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-600 transition-all duration-300">
+          {name}
+        </h3>
+        <p class="text-slate-400 text-sm mt-1">{commander}</p>
+      </div>
+      <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-purple-300 text-xs font-medium animate-float">
+        {format}
+      </span>
+    </div>
+
+    <p class="text-slate-300 text-sm mb-4 line-clamp-2">
+      {description}
+    </p>
+
+    <div class="flex justify-between items-center">
+      <div class="flex -space-x-1">
+        {colors.map((color) => (
+          <div class={`w-6 h-6 rounded-full bg-gradient-to-br ${getColorClass(color)} ring-2 ring-slate-900 shadow-lg transform hover:scale-110 hover:z-10 transition-all duration-200`}></div>
+        ))}
+      </div>
+      
+      <button class="px-4 py-2 bg-purple-600 bg-opacity-20 hover:bg-opacity-100 rounded-lg text-sm font-medium text-purple-300 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+        View Details
+      </button>
+    </div>
+  </div>
+
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+  </div>
+</div>

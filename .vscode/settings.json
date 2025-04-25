@@ -1,0 +1,18 @@
+{
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.inlineSuggest.enabled": true,
+  "css.validate": false,
+  "editor.formatOnSave": true,
+  "tailwindCSS.includeLanguages": {
+    "astro": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["class\\: ?'([^']*)'"],
+    ["class\\: ?\"([^\"]*)\""],
+    ["class: {([^}]*)}", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}
