@@ -17,7 +17,7 @@
   <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
     <div class="space-y-8">
       <h1 class="text-5xl sm:text-7xl font-extrabold">
-        <span class="block bg-clip-text [background:var(--gradient-text)] animate-gradient">
+        <span class="block gradient-text [background:var(--gradient-text)]">
           Johnny's Decks
         </span>
         <span class="block text-[var(--color-text-primary)] mt-2"></span>
@@ -49,17 +49,6 @@
 </div>
 
 <style>
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .animate-gradient {
-    background-size: 200% auto;
-    animation: gradient 8s linear infinite;
-  }
-
   @keyframes spin-slow {
     from {
       transform: rotate(0deg);

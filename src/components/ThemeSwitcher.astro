@@ -33,7 +33,6 @@ const themes = [
             role="menuitem"
           >
             <span class="text-xl">{theme.icon}</span>
-            {/* <span>{theme.name}</span> */}
           </button>
         ))}
       </div>
@@ -44,9 +43,10 @@ const themes = [
 <script>
 import type { Mana } from "@/types/mana";
 
-const defaultTheme = 'blue';
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+const defaultTheme = prefersDark.matches ? 'black' : 'white';
 
-// Initialize theme from localStorage or default
+// Initialize theme from localStorage or system preference
 const savedTheme = localStorage.getItem('theme') || defaultTheme;
 document.documentElement.setAttribute('data-theme', savedTheme);
 updateThemeIcon(savedTheme as Mana);
@@ -62,8 +62,8 @@ menuButton?.addEventListener('click', () => {
 });
 
 // Close menu when clicking outside
-document.addEventListener('click', (event) => {
-  const target = event.target as HTMLElement;
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
   if (!menuButton?.contains(target) && !menu?.contains(target)) {
     menuButton?.setAttribute('aria-expanded', 'false');
   }
@@ -79,8 +79,22 @@ document.querySelectorAll('[data-theme-value]').forEach(button => {
       updateThemeIcon(theme as Mana);
       // Close menu after selection
       menuButton?.setAttribute('aria-expanded', 'false');
+      // Dispatch theme change event
+      document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
     }
   });
+});
+
+// Listen for system theme changes
+prefersDark.addEventListener('change', (e) => {
+  const savedTheme = localStorage.getItem('theme');
+  if (!savedTheme) {
+    const systemTheme = e.matches ? 'black' : 'white';
+    document.documentElement.setAttribute('data-theme', systemTheme);
+    localStorage.setItem('theme', systemTheme);
+    updateThemeIcon(systemTheme as Mana);
+    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: systemTheme } }));
+  }
 });
 
 function updateThemeIcon(theme: Mana) {

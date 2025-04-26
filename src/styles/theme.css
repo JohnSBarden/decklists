@@ -18,7 +18,7 @@
   --color-black-500: rgb(54, 43, 68);
   --color-black-600: rgb(35, 27, 45);
   
-  /* Red - Mountains (Freedom, Emotion, Destruction) */
+  /* Red - Mountains (Freedom, Emotion, Chaos) */
   --color-red-300: rgb(255, 150, 130);
   --color-red-400: rgb(235, 90, 70);
   --color-red-500: rgb(211, 45, 39);
@@ -103,7 +103,7 @@
 
   --color-text-primary: var(--color-white-300);
   --color-text-secondary: var(--color-white-400);
-  --color-accent-primary: var(--color-red-400);
+  --color-accent-primary: var(--color-red-600);
   --color-accent-secondary: var(--color-red-300);
   
   --color-button-border: var(--color-red-400);

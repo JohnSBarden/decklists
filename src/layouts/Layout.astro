@@ -1,7 +1,6 @@
 ---
 // Layout component for site-wide styles and structure
 import "../styles/global.css";
-import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 ---
 
 <html lang="en" data-theme="black">
@@ -10,8 +9,10 @@ import ThemeSwitcher from "../components/ThemeSwitcher.astro";
     <meta name="viewport" content="width=device-width" />
     <title>Johnny's Decks</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="color-scheme" content="dark light">
   </head>
-  <body class="[background:var(--gradient-background)] min-h-screen text-[var(--color-text-primary)] font-sans">
+  <body class="[background:var(--gradient-background)] min-h-screen text-[var(--color-text-primary)] font-sans no-scrollbar">
     <slot />
+    <!-- <ThemeNotification /> -->
   </body>
 </html>
