@@ -1,0 +1,99 @@
+---
+const themes = [
+  { id: 'white', name: 'Plains', icon: '☀️', isDark: false },
+  { id: 'blue', name: 'Island', icon: '🌊', isDark: true },
+  { id: 'black', name: 'Swamp', icon: '🌑', isDark: true },
+  { id: 'red', name: 'Mountain', icon: '🔥', isDark: false },
+  { id: 'green', name: 'Forest', icon: '🌳', isDark: false }
+];
+
+---
+
+<div class="top-4 right-4 z-50">
+  <div class="relative">
+    <button
+      id="theme-menu-button"
+      class="p-2 rounded-lg bg-[var(--color-accent-primary)] bg-opacity-10 hover:bg-opacity-20 transition-all duration-200"
+      aria-label="Theme Menu"
+      aria-expanded="false"
+    >
+      <span class="text-xl" id="current-theme-icon">🎨</span>
+    </button>
+    
+    <div
+      id="theme-menu"
+      class="absolute right-0 mt-2 rounded-lg shadow-lg bg-[var(--gradient-background)] backdrop-blur-md border border-[var(--color-accent-primary)] border-opacity-20 hidden"
+      role="menu"
+    >
+      <div class="py-2">
+        {themes.map(theme => (
+          <button
+            class="w-full px-4 py-2 text-left hover:bg-[var(--color-accent-primary)] hover:bg-opacity-10 transition-colors duration-200 flex items-center gap-2"
+            data-theme-value={theme.id}
+            role="menuitem"
+          >
+            <span class="text-xl">{theme.icon}</span>
+            {/* <span>{theme.name}</span> */}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+import type { Mana } from "@/types/mana";
+
+const defaultTheme = 'blue';
+
+// Initialize theme from localStorage or default
+const savedTheme = localStorage.getItem('theme') || defaultTheme;
+document.documentElement.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme as Mana);
+
+// Handle menu button click
+const menuButton = document.getElementById('theme-menu-button');
+const menu = document.getElementById('theme-menu');
+
+menuButton?.addEventListener('click', () => {
+  const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+  menu?.classList.toggle('hidden');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+  const target = event.target as HTMLElement;
+  if (!menuButton?.contains(target) && !menu?.contains(target)) {
+    menuButton?.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// Add click handlers for theme buttons
+document.querySelectorAll('[data-theme-value]').forEach(button => {
+  button.addEventListener('click', () => {
+    const theme = button.getAttribute('data-theme-value');
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateThemeIcon(theme as Mana);
+      // Close menu after selection
+      menuButton?.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
+function updateThemeIcon(theme: Mana) {
+  const iconMap = {
+    white: '☀️',
+    blue: '🌊',
+    black: '🌑',
+    red: '🔥',
+    green: '🌳'
+  };
+  const currentThemeIcon = document.getElementById('current-theme-icon');
+  if (currentThemeIcon) {
+    currentThemeIcon.textContent = iconMap[theme] || '🎨';
+  }
+}
+</script>

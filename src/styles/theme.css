@@ -1,0 +1,132 @@
+:root {
+  /* MTG Base Colors */
+  /* White - Plains (Justice, Order, Protection) */
+  --color-white-300: rgb(253, 244, 220);
+  --color-white-400: rgb(249, 236, 183);
+  --color-white-500: rgb(244, 210, 118);
+  --color-white-600: rgb(230, 185, 68);
+  
+  /* Blue - Islands (Knowledge, Deceit, Illusion) */
+  --color-blue-300: rgb(179, 206, 239);
+  --color-blue-400: rgb(125, 167, 217);
+  --color-blue-500: rgb(58, 118, 195);
+  --color-blue-600: rgb(28, 85, 157);
+  
+  /* Black - Swamps (Power, Death, Corruption) */
+  --color-black-300: rgb(108, 93, 128);
+  --color-black-400: rgb(75, 61, 92);
+  --color-black-500: rgb(54, 43, 68);
+  --color-black-600: rgb(35, 27, 45);
+  
+  /* Red - Mountains (Freedom, Emotion, Destruction) */
+  --color-red-300: rgb(255, 150, 130);
+  --color-red-400: rgb(235, 90, 70);
+  --color-red-500: rgb(211, 45, 39);
+  --color-red-600: rgb(166, 25, 25);
+  
+  /* Green - Forests (Growth, Nature, Life) */
+  --color-green-300: rgb(155, 211, 174);
+  --color-green-400: rgb(95, 183, 96);
+  --color-green-500: rgb(48, 145, 58);
+  --color-green-600: rgb(24, 112, 38);
+  
+  /* Utility Colors */
+  --color-slate-300: rgb(203, 213, 225);
+  --color-slate-900: rgb(15, 23, 42);
+  --color-gray-900: rgb(17, 24, 39);
+}
+
+/* White Theme - Light */
+[data-theme="white"] {
+  --gradient-background: linear-gradient(to bottom right, var(--color-white-300), var(--color-white-500));
+  --gradient-text: linear-gradient(to right, var(--color-black-500), var(--color-white-600), var(--color-red-500));
+  --gradient-button: linear-gradient(to right, var(--color-white-500), var(--color-white-600));
+  --gradient-divider: linear-gradient(to right, transparent, var(--color-white-500), transparent);
+  --gradient-pulse: radial-gradient(circle at 50% 50%, rgba(244, 210, 118, 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+
+  --color-text-primary: var(--color-black-600);
+  --color-text-secondary: var(--color-black-400);
+  --color-accent-primary: var(--color-white-600);
+  --color-accent-secondary: var(--color-white-500);
+  
+  --color-button-border: var(--color-white-500);
+  --color-button-hover-shadow: var(--color-white-500);
+  --color-button-focus-ring: var(--color-white-500);
+  --color-card-border-hover: rgba(244, 210, 118, 0.5);
+}
+
+/* Blue Theme - Dark */
+[data-theme="blue"] {
+  --gradient-background: linear-gradient(to bottom right, var(--color-blue-600), var(--color-black-500), var(--color-blue-600));
+  --gradient-text: linear-gradient(to right, var(--color-white-400), var(--color-blue-400), var(--color-blue-300));
+  --gradient-button: linear-gradient(to right, var(--color-blue-500), var(--color-blue-600));
+  --gradient-divider: linear-gradient(to right, transparent, var(--color-blue-400), transparent);
+  --gradient-pulse: radial-gradient(circle at 50% 50%, rgba(58, 118, 195, 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+
+  --color-text-primary: var(--color-white-300);
+  --color-text-secondary: var(--color-slate-300);
+  --color-accent-primary: var(--color-blue-400);
+  --color-accent-secondary: var(--color-blue-300);
+  
+  --color-button-border: var(--color-blue-500);
+  --color-button-hover-shadow: var(--color-blue-500);
+  --color-button-focus-ring: var(--color-blue-500);
+  --color-card-border-hover: rgba(125, 167, 217, 0.5);
+}
+
+/* Black Theme - Dark */
+[data-theme="black"] {
+  --gradient-background: linear-gradient(to bottom right, var(--color-black-600), var(--color-black-500));
+  --gradient-text: linear-gradient(to right, var(--color-white-300), var(--color-black-300), var(--color-black-400));
+  --gradient-button: linear-gradient(to right, var(--color-black-400), var(--color-black-500));
+  --gradient-divider: linear-gradient(to right, transparent, var(--color-black-400), transparent);
+  --gradient-pulse: radial-gradient(circle at 50% 50%, rgba(75, 61, 92, 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+
+  --color-text-primary: var(--color-white-300);
+  --color-text-secondary: var(--color-slate-300);
+  --color-accent-primary: var(--color-black-300);
+  --color-accent-secondary: var(--color-black-400);
+  
+  --color-button-border: var(--color-black-400);
+  --color-button-hover-shadow: var(--color-black-400);
+  --color-button-focus-ring: var(--color-black-400);
+  --color-card-border-hover: rgba(75, 61, 92, 0.5);
+}
+
+/* Red Theme - Light */
+[data-theme="red"] {
+  --gradient-background: linear-gradient(to bottom right, var(--color-red-300), var(--color-red-500));
+  --gradient-text: linear-gradient(to right, var(--color-white-300), var(--color-red-400), var(--color-red-500));
+  --gradient-button: linear-gradient(to right, var(--color-red-400), var(--color-red-500));
+  --gradient-divider: linear-gradient(to right, transparent, var(--color-red-400), transparent);
+  --gradient-pulse: radial-gradient(circle at 50% 50%, rgba(235, 90, 70, 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+
+  --color-text-primary: var(--color-white-300);
+  --color-text-secondary: var(--color-white-400);
+  --color-accent-primary: var(--color-red-400);
+  --color-accent-secondary: var(--color-red-300);
+  
+  --color-button-border: var(--color-red-400);
+  --color-button-hover-shadow: var(--color-red-400);
+  --color-button-focus-ring: var(--color-red-400);
+  --color-card-border-hover: rgba(235, 90, 70, 0.5);
+}
+
+/* Green Theme - Light */
+[data-theme="green"] {
+  --gradient-background: linear-gradient(to bottom right, var(--color-green-300), var(--color-green-500));
+  --gradient-text: linear-gradient(to right, var(--color-black-500), var(--color-green-400), var(--color-green-500));
+  --gradient-button: linear-gradient(to right, var(--color-green-400), var(--color-green-500));
+  --gradient-divider: linear-gradient(to right, transparent, var(--color-green-400), transparent);
+  --gradient-pulse: radial-gradient(circle at 50% 50%, rgba(95, 183, 96, 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+
+  --color-text-primary: var(--color-black-600);
+  --color-text-secondary: var(--color-black-400);
+  --color-accent-primary: var(--color-green-500);
+  --color-accent-secondary: var(--color-green-400);
+  
+  --color-button-border: var(--color-green-500);
+  --color-button-hover-shadow: var(--color-green-500);
+  --color-button-focus-ring: var(--color-green-500);
+  --color-card-border-hover: rgba(95, 183, 96, 0.5);
+}

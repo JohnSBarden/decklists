@@ -1,3 +1,5 @@
+@import './theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,5 +21,5 @@ body {
 }
 
 .glass-card:hover {
-  border-color: rgb(168 85 247 / 0.5);
+  border-color: var(--color-card-border-hover);
 }

@@ -1,4 +1,6 @@
 ---
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+
 ---
 <nav class="fixed w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,8 +19,9 @@
           <a href="/about" class="nav-link">About</a>
         </div>
       </div>
+      <div class="flex items-center space-x-2">
       <!-- Mobile menu button -->
-      <div class="md:hidden">
+      <div class="md:hidden flex items-end">
         <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
           <span class="sr-only">Open main menu</span>
           <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,6 +29,8 @@
           </svg>
         </button>
       </div>
+      <ThemeSwitcher />
+    </div>
     </div>
   </div>
   <!-- Mobile menu -->
