@@ -1,22 +1,6 @@
 ---
-// Importing type for theme configuration
-import type { Mana } from "@/types/mana";
-
-interface Theme {
-  name: string;
-  icon: string;
-  isDark: boolean;
-}
-
-interface ThemeConfig {
-  [key: string]: Theme;
-}
-
-interface ThemeChangeEvent extends CustomEvent {
-  detail: {
-    theme: Mana;
-  };
-}
+// Importing types
+import type { Theme, ThemeConfig, ThemeChangeEvent } from '../types/theme';
 ---
 
 <div id="theme-notification" class="fixed bottom-4 left-4 z-50 p-4 rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-sm text-[var(--color-text-primary)] hidden">
@@ -27,6 +11,8 @@ interface ThemeChangeEvent extends CustomEvent {
 </div>
 
 <script>
+import type { Theme, ThemeConfig, ThemeChangeEvent } from '../types/theme';
+
 const notification = document.getElementById('theme-notification');
 const themeIcon = document.getElementById('theme-icon');
 const themeName = document.getElementById('theme-name');
@@ -44,7 +30,7 @@ const themes: ThemeConfig = {
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
 // Update notification based on current theme
-function updateNotification(themeId: Mana) {
+function updateNotification(themeId: string) {
   const theme = themes[themeId];
   if (!theme) return;
 
@@ -59,12 +45,12 @@ function updateNotification(themeId: Mana) {
 
 // Set initial theme based on system preference
 function initializeTheme() {
-  const savedTheme = localStorage.getItem('theme') as Mana | null;
+  const savedTheme = localStorage.getItem('theme');
   if (!savedTheme) {
     const systemTheme = prefersDark.matches ? 'black' : 'white';
     document.documentElement.setAttribute('data-theme', systemTheme);
     localStorage.setItem('theme', systemTheme);
-    updateNotification(systemTheme as Mana);
+    updateNotification(systemTheme);
   } else {
     updateNotification(savedTheme);
   }
@@ -77,7 +63,7 @@ prefersDark.addEventListener('change', (e) => {
     const systemTheme = e.matches ? 'black' : 'white';
     document.documentElement.setAttribute('data-theme', systemTheme);
     localStorage.setItem('theme', systemTheme);
-    updateNotification(systemTheme as Mana);
+    updateNotification(systemTheme);
   }
 });
 

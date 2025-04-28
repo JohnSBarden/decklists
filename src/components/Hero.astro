@@ -1,15 +1,25 @@
 ---
+
 ---
-<div class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+<div
+  class="relative min-h-screen flex items-center justify-center overflow-hidden"
+>
   <!-- Animated background -->
   <div class="absolute inset-0">
     <div class="absolute inset-0 [background:var(--gradient-background)]"></div>
     <div class="absolute inset-0 opacity-30">
-      <div class="absolute inset-0 [background:var(--gradient-pulse)] animate-pulse"></div>
+      <div
+        class="absolute inset-0 [background:var(--gradient-pulse)] animate-pulse"
+      >
+      </div>
     </div>
     <!-- Magic card pattern -->
     <div class="absolute inset-0 opacity-5">
-      <div class="h-full w-full bg-[url('/mtg_pentagon_mana.svg')] bg-center bg-no-repeat bg-[length:500px_500px] animate-spin-slow"></div>
+      <div
+        class="h-full w-full bg-[url('/mtg_pentagon_mana.svg')] bg-center bg-no-repeat bg-[length:500px_500px] animate-spin-slow"
+      >
+      </div>
     </div>
   </div>
 
@@ -17,26 +27,40 @@
   <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
     <div class="space-y-8">
       <h1 class="text-5xl sm:text-7xl font-extrabold">
-        <span class="block gradient-text [background:var(--gradient-text)]">
+        <span class="block gradient-text [background:var(--gradient-text)] p-5">
           Johnny's Decks
         </span>
-        <span class="block text-[var(--color-text-primary)] mt-2"></span>
       </h1>
-      
-      <p class="text-xl sm:text-2xl text-[var(--color-text-secondary)] max-w-3xl mx-auto leading-relaxed">
-        Explore my carefully crafted Magic: The Gathering decks, 
-        <span class="text-[var(--color-accent-primary)]">strategies</span>, and 
-        <span class="text-[var(--color-accent-secondary)]">favorite combinations</span>.
+
+      <p
+        class="text-xl sm:text-2xl text-[var(--color-text-secondary)] max-w-3xl mx-auto leading-relaxed"
+      >
+        I play Magic: the Gathering, and I like to take game actions. Check out
+        my collection of primarily
+        <span class="text-[var(--color-accent-primary)]">Standard</span>, and
+        <span class="text-[var(--color-accent-secondary)]">Commander</span> decks.
       </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-        <a href="/decks" class="transform hover:scale-105 transition-all duration-300">
-          <button class="px-8 py-3 [background:var(--gradient-button)] rounded-lg font-bold text-[var(--color-text-primary)] shadow-lg hover:shadow-[var(--color-button-hover-shadow)] hover:shadow-opacity-25 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900">
+
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8"
+      >
+        <a
+          href="/decks"
+          class="transform hover:scale-105 transition-all duration-300"
+        >
+          <button
+            class="px-8 py-3 [background:var(--gradient-button)] rounded-lg font-bold text-[var(--color-text-primary)] shadow-lg hover:shadow-[var(--color-button-hover-shadow)] hover:shadow-opacity-25 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900"
+          >
             View My Decks
           </button>
         </a>
-        <a href="/about" class="transform hover:scale-105 transition-all duration-300">
-          <button class="px-8 py-3 bg-transparent border-2 border-[var(--color-button-border)] border-opacity-50 rounded-lg font-bold text-[var(--color-text-primary)] hover:bg-[var(--color-button-border)] hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900">
+        <a
+          href="/about"
+          class="transform hover:scale-105 transition-all duration-300"
+        >
+          <button
+            class="px-8 py-3 bg-transparent border-2 border-[var(--color-button-border)] border-opacity-50 rounded-lg font-bold text-[var(--color-text-primary)] hover:bg-[var(--color-button-border)] hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900"
+          >
             About Me
           </button>
         </a>
@@ -45,7 +69,10 @@
   </div>
 
   <!-- Decorative elements -->
-  <div class="absolute bottom-0 left-0 right-0 h-px [background:var(--gradient-divider)]"></div>
+  <div
+    class="absolute bottom-0 left-0 right-0 h-px [background:var(--gradient-divider)]"
+  >
+  </div>
 </div>
 
 <style>

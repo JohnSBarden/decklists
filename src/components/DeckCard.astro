@@ -1,46 +1,62 @@
 ---
-import type { MagicColor } from '../types/deck';
+import type { Deck, MagicColor } from "../types/deck";
 
 interface Props {
-  name: string;
-  commander?: string;
-  format: string;
-  description: string;
-  colors: MagicColor[];
-  image?: string;
+  deck: Deck;
 }
 
-const { name, commander, format, description, colors, image } = Astro.props;
+const { name, commander, format, description, colors, image, link } =
+  Astro.props.deck;
 
 const getColorClass = (color: MagicColor): string => {
   const colorMap: Record<MagicColor, string> = {
-    W: 'from-yellow-200 to-yellow-100',
-    U: 'from-blue-500 to-blue-400',
-    B: 'from-slate-800 to-slate-700',
-    R: 'from-red-600 to-red-500',
-    G: 'from-green-600 to-green-500',
+    W: "from-yellow-200 to-yellow-100",
+    U: "from-blue-500 to-blue-400",
+    B: "from-slate-800 to-slate-700",
+    R: "from-red-600 to-red-500",
+    G: "from-green-600 to-green-500",
   };
   return colorMap[color];
 };
 ---
 
-<div class="group glass-card rounded-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 relative">
-  {image && (
-    <div class="absolute inset-0 bg-cover bg-[center_top_-1rem]" style={`background-image: url('${image}')`}>
-      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-    </div>
-  )}
-  <div class="absolute inset-0 [background:var(--gradient-button)] opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-  
+<div
+  class="group glass-card rounded-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 relative"
+>
+  {
+    image && (
+      <div
+        class="absolute inset-0 bg-cover bg-[center_top_15%]"
+        style={`background-image: url('${image}')`}
+      >
+        <div class="absolute inset-0 bg-black bg-opacity-60" />
+      </div>
+    )
+  }
+  <div
+    class="absolute inset-0 [background:var(--gradient-button)] opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+  >
+  </div>
+
   <div class="relative p-6">
     <div class="flex justify-between items-start mb-4">
       <div>
-        <h3 class="text-xl font-bold text-[var(--color-accent-primary)] group-hover:text-transparent group-hover:bg-clip-text group-hover:[var(--gradient-background)] transition-all duration-300">
+        <h3
+          class="text-xl font-bold text-[var(--color-accent-primary)] group-hover:[var(--gradient-text)] group-hover:[var(--gradient-background)] transition-all duration-300"
+        >
           {name}
         </h3>
-        {commander && <p class="text-[var(--color-accent-secondary)] text-sm mt-1">{commander}</p>}
+        {
+          commander && (
+            <p class="text-[var(--color-text-secondary)] text-sm mt-1">
+              {commander}
+            </p>
+          )
+        }
       </div>
-      <span class="px-3 py-1 [background:var(--gradient-button)] bg-opacity-20 rounded-full text-[var(--color-text-secondary)] text-xs font-medium ">
+      <span
+        class="px-3 py-1 [background:var(--gradient-button)] bg-opacity-20 rounded-full text-[var(--color-text-secondary)] text-xs font-medium"
+      >
         {format}
       </span>
     </div>
@@ -51,18 +67,31 @@ const getColorClass = (color: MagicColor): string => {
 
     <div class="flex justify-between items-center">
       <div class="flex -space-x-1">
-        {colors.map((color) => (
-          <div class={`w-6 h-6 rounded-full bg-gradient-to-br ${getColorClass(color)} ring-2 ring-slate-900 shadow-lg transform hover:scale-110 hover:z-10 transition-all duration-200`}></div>
-        ))}
+        {
+          colors.map((color) => (
+            <div
+              class={`w-6 h-6 rounded-full bg-gradient-to-br ${getColorClass(color)} ring-2 ring-slate-900 shadow-lg transform hover:scale-110 hover:z-10 transition-all duration-200`}
+            />
+          ))
+        }
       </div>
-      
-      <button class="px-4 py-2 [background:var(--gradient-button)] bg-opacity-20 hover:bg-opacity-100 rounded-lg text-sm font-medium vartext-[var(--color-text-secondary)] hover:[var(--color-text-primary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900">
-        View Details
-      </button>
+
+      {
+        link && (
+          <a href={link} target="_blank">
+            <button class="px-4 py-2 [background:var(--gradient-button)] bg-opacity-20 hover:bg-opacity-100 rounded-lg text-sm font-medium vartext-[var(--color-text-secondary)] hover:[var(--color-text-primary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+              View Details
+            </button>
+          </a>
+        )
+      }
     </div>
   </div>
 
   <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"
+    >
+    </div>
   </div>
 </div>
