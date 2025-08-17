@@ -4,18 +4,18 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 ---
 
-<html lang="en" data-theme="black">
+<html lang="en" data-theme="black" class="h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Johnny's Decks</title>
+    <title>Johnny CashMoney</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="color-scheme" content="dark light" />
   </head>
   <body
-    class="[background:var(--gradient-background)] min-h-screen text-[var(--color-text-primary)] font-sans no-scrollbar flex flex-col"
+    class="[background:var(--gradient-background)] h-full text-[var(--color-text-primary)] font-sans no-scrollbar flex flex-col"
   >
-    <main class="flex-1">
+    <main class="flex-1 overflow-y-auto no-scrollbar">
       <slot />
     </main>
     <Footer />
