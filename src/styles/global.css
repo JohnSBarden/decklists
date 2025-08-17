@@ -14,11 +14,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* TODO fix the coloration on light themes */
 .glass-card {
-  background-color: rgb(30 41 59 / 0.2);
+  background-color: var(--glass-background, rgb(30 41 59 / 0.2));
   backdrop-filter: blur(4px);
-  border: 1px solid rgb(255 255 255 / 0.1);
+  border: 1px solid var(--glass-border, rgb(255 255 255 / 0.1));
   position: relative;
 }
 

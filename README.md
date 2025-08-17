@@ -1,20 +1,8 @@
-# Astro Starter Kit: Minimal
+# Decklists
 
-```sh
-npm create astro@latest -- --template minimal
-```
+This is just for funsies.  Built with Astro, React, Tailwind, other.  Deployed via Netlify and hosted at [JohnnyCash.money](https://johnnycash.money) (for now).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/28b65dd7-5028-4e60-90ba-0efe0cc31e2c/deploy-status)](https://app.netlify.com/projects/decklists/deploys)
 
 ## 🧞 Commands
 

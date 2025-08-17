@@ -20,9 +20,9 @@
   
   /* Red - Mountains (Freedom, Emotion, Chaos) */
   --color-red-300: rgb(255, 150, 130);
-  --color-red-400: rgb(235, 90, 70);
-  --color-red-500: rgb(211, 45, 39);
-  --color-red-600: rgb(166, 25, 25);
+  --color-red-400: rgb(248, 59, 34);
+  --color-red-500: rgb(170, 11, 6);
+  --color-red-600: rgb(124, 16, 16);
   
   /* Green - Forests (Growth, Nature, Life) */
   --color-green-300: rgb(155, 211, 174);
@@ -53,6 +53,9 @@
   --color-button-hover-shadow: var(--color-white-500);
   --color-button-focus-ring: var(--color-white-500);
   --color-card-border-hover: rgba(244, 210, 118, 0.5);
+  
+  --glass-background: rgba(244, 210, 118, 0.3);
+  --glass-border: rgba(54, 43, 68, 0.2);
 }
 
 /* Blue Theme - Dark */
@@ -72,6 +75,9 @@
   --color-button-hover-shadow: var(--color-blue-500);
   --color-button-focus-ring: var(--color-blue-500);
   --color-card-border-hover: rgba(125, 167, 217, 0.5);
+  
+  --glass-background: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Black Theme - Dark */
@@ -91,6 +97,9 @@
   --color-button-hover-shadow: var(--color-black-400);
   --color-button-focus-ring: var(--color-black-400);
   --color-card-border-hover: rgba(75, 61, 92, 0.5);
+  
+  --glass-background: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Red Theme - Light */
@@ -110,6 +119,9 @@
   --color-button-hover-shadow: var(--color-red-400);
   --color-button-focus-ring: var(--color-red-400);
   --color-card-border-hover: rgba(235, 90, 70, 0.5);
+  
+  --glass-background: rgba(255, 150, 130, 0.3);
+  --glass-border: rgba(54, 43, 68, 0.2);
 }
 
 /* Green Theme - Light */
@@ -129,4 +141,7 @@
   --color-button-hover-shadow: var(--color-green-500);
   --color-button-focus-ring: var(--color-green-500);
   --color-card-border-hover: rgba(95, 183, 96, 0.5);
+  
+  --glass-background: rgba(155, 211, 174, 0.3);
+  --glass-border: rgba(54, 43, 68, 0.2);
 }
