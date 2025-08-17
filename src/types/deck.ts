@@ -17,4 +17,5 @@ export interface Deck {
   colors: MagicColor[];
   image?: string;
   link?: string;
+  lastUpdatedAtUtc: string;
 }

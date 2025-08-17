@@ -1,13 +1,17 @@
 ---
 import ThemeSwitcher from "./ThemeSwitcher.astro";
-
 ---
-<nav class="fixed w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
+
+<nav
+  class="fixed w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
         <a href="/" class="group flex items-center space-x-2">
-          <span class="text-2xl gradient-text [background:var(--gradient-text)]">
+          <span
+            class="text-2xl gradient-text [background:var(--gradient-text)]"
+          >
             JohnnyCash.Money
           </span>
         </a>
@@ -20,17 +24,30 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
         </div>
       </div>
       <div class="flex items-center space-x-2">
-      <!-- Mobile menu button -->
-      <div class="md:hidden flex items-end">
-        <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-          <span class="sr-only">Open main menu</span>
-          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-end">
+          <button
+            type="button"
+            class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="block h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+        <ThemeSwitcher />
       </div>
-      <ThemeSwitcher />
-    </div>
     </div>
   </div>
   <!-- Mobile menu -->
@@ -44,11 +61,11 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 </nav>
 
 <script>
-  const mobileMenuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileMenuButton = document.querySelector(".mobile-menu-button");
+  const mobileMenu = document.querySelector(".mobile-menu");
 
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  mobileMenuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
   });
 </script>
 
@@ -56,11 +73,11 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
   .nav-link {
     @apply text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium relative;
   }
-  
+
   .nav-link::after {
     @apply content-[''] absolute left-0 -bottom-1 h-[2px] w-0 bg-purple-500 transition-all duration-300;
   }
-  
+
   .nav-link:hover::after {
     @apply w-full;
   }

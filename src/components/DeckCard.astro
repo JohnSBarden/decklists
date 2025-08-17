@@ -28,9 +28,7 @@ const getColorClass = (color: MagicColor): string => {
       <div
         class="absolute inset-0 bg-cover bg-[center_top_15%]"
         style={`background-image: url('${image}')`}
-      >
-        <div class="absolute inset-0 bg-black bg-opacity-60" />
-      </div>
+      />
     )
   }
   <div
@@ -42,7 +40,7 @@ const getColorClass = (color: MagicColor): string => {
     <div class="flex justify-between items-start mb-4">
       <div>
         <h3
-          class="text-xl font-bold text-[var(--color-accent-primary)] group-hover:[var(--gradient-text)] group-hover:[var(--gradient-background)] transition-all duration-300"
+          class="text-xl font-bold text-[var(--color-text-primary)] group-hover:[var(--gradient-text)] group-hover:[var(--gradient-background)] transition-all duration-300 drop-shadow-md"
         >
           {name}
         </h3>
@@ -61,7 +59,9 @@ const getColorClass = (color: MagicColor): string => {
       </span>
     </div>
 
-    <p class="text-slate-300 text-sm mb-4 line-clamp-2">
+    <p
+      class="text-[var(--color-text-primary)] text-sm mb-4 line-clamp-2 drop-shadow-md"
+    >
       {description}
     </p>
 
@@ -90,7 +90,7 @@ const getColorClass = (color: MagicColor): string => {
 
   <div class="absolute inset-0 pointer-events-none">
     <div
-      class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"
+      class="absolute inset-0 [background:var(--gradient-background)] opacity-30"
     >
     </div>
   </div>

@@ -1,60 +1,78 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import BackgroundPattern from "../components/BackgroundPattern.astro";
 ---
 
 <Layout title="About - Johnny's Decks">
   <Navigation />
-  <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Animated background -->
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 [background:var(--gradient-background)]"></div>
-      <div class="absolute inset-0 opacity-30">
-        <div class="absolute inset-0 [background:var(--gradient-pulse)] animate-pulse"></div>
-      </div>
-      <!-- Magic card pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="h-full w-full bg-[url('/mtg_pentagon_mana.svg')] bg-center bg-no-repeat bg-[length:500px_500px] animate-spin-slow"></div>
-      </div>
-    </div>
+  <div
+    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+  >
+    <BackgroundPattern />
 
     <main class="relative z-10 container mx-auto px-4 py-16">
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl font-bold gradient-text [background:var(--gradient-text)] mb-8 text-center">
+        <h1
+          class="text-4xl font-bold gradient-text [background:var(--gradient-text)] mb-8 text-center"
+        >
           About Me
         </h1>
-        
+
         <div class="glass-card rounded-xl p-8 space-y-6">
           <section>
-            <h2 class="text-2xl font-bold text-[var(--color-accent-primary)] mb-4">Who Am I?</h2>
+            <h2
+              class="text-2xl font-bold text-[var(--color-accent-primary)] mb-4"
+            >
+              Who Am I?
+            </h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              I'm Johnny, a passionate Magic: The Gathering player who loves building creative and unique decks. 
-              My approach to the game focuses on finding interesting card combinations and synergies that create 
-              memorable gameplay experiences.
+              I'm Johnny, a passionate Magic: The Gathering player who loves
+              building creative and unique decks. My approach to the game
+              focuses on finding interesting card combinations and synergies
+              that create memorable gameplay experiences. I prefer being
+              reactive and gaining minor value over the course of the game
+              rather than comboing out of nowhere.
             </p>
           </section>
 
           <section>
-            <h2 class="text-2xl font-bold text-[var(--color-accent-primary)] mb-4">My Magic Journey</h2>
+            <h2
+              class="text-2xl font-bold text-[var(--color-accent-primary)] mb-4"
+            >
+              My Magic Journey
+            </h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              I started playing Magic during the original Innistrad block and fell in love with the game's depth 
-              and complexity. Since then, I've been exploring various formats and deck-building strategies, 
-              always looking for new ways to express creativity through the game.
+              I started playing Magic during Theros Beyond Death/Kaldheim. My
+              first commander deck was Jinnie Fay tokens, and my favorite format
+              is Standard. Red is the worst color. 😎
             </p>
           </section>
 
           <section>
-            <h2 class="text-2xl font-bold text-[var(--color-accent-primary)] mb-4">Why This Site?</h2>
+            <h2
+              class="text-2xl font-bold text-[var(--color-accent-primary)] mb-4"
+            >
+              Why This Site?
+            </h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              This website is my way of sharing my deck-building journey with the Magic community. Here, you'll 
-              find detailed breakdowns of my decks, the thought process behind card choices, and insights into 
-              different strategies across various formats.
+              I'm writing my thoughts and processes down to force myself to
+              analyze my decisions and card choices in an effort to improve my
+              overall gameplay. I enjoy building fun decks, but lack the
+              discipline to break down why things are or are not working.
+              Putting the decisions in words and defending them forces me to
+              think more deeply about my choices.
             </p>
           </section>
 
           <div class="mt-8 flex justify-center">
-            <a href="/decks" class="transform hover:scale-105 transition-all duration-300">
-              <button class="px-8 py-3 [background:var(--gradient-button)] rounded-lg font-bold text-[var(--color-text-primary)] shadow-lg hover:shadow-[var(--color-button-hover-shadow)] hover:shadow-opacity-25 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900">
+            <a
+              href="/decks"
+              class="transform hover:scale-105 transition-all duration-300"
+            >
+              <button
+                class="px-8 py-3 [background:var(--gradient-button)] rounded-lg font-bold text-[var(--color-text-primary)] shadow-lg hover:shadow-[var(--color-button-hover-shadow)] hover:shadow-opacity-25 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900"
+              >
                 Explore My Decks
               </button>
             </a>

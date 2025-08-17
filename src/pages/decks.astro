@@ -1,10 +1,44 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import DeckCard from "../components/DeckCard.astro";
-import { decks } from "../data/decks";
 import Navigation from "@/components/Navigation.astro";
+import type { Deck } from "../types/deck";
+import { lastModified } from "@/helpers/dateutils";
 
-const sampleDecks = decks;
+// Fetch decks from Moxfield API
+async function fetchDecks(): Promise<Deck[]> {
+  try {
+    const response = await fetch(
+      "https://api.moxfield.com/v2/users/JohnnyCashMoney/decks"
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Transform Moxfield API response to match our Deck type
+    return data.data.map((deck: any) => ({
+      id: deck.publicId,
+      name: deck.name,
+      format: deck.format
+        ? deck.format.charAt(0).toUpperCase() + deck.format.slice(1)
+        : "Commander",
+      lastUpdatedAtUtc: deck.lastUpdatedAtUtc,
+      description: lastModified(deck) || "",
+      colors: deck.colors || [],
+      image: deck.mainCardId
+        ? `https://assets.moxfield.net/cards/card-${deck.mainCardId}-art_crop.webp`
+        : undefined,
+      link: `https://moxfield.com/decks/${deck.publicId}`,
+    }));
+  } catch (error) {
+    console.error("Error fetching decks:", error);
+    return [];
+  }
+}
+
+const decks = await fetchDecks();
 ---
 
 <Layout title="My Decks - Johnny's MTG Collection">
@@ -18,9 +52,17 @@ const sampleDecks = decks;
       >
         My Decks
       </h1>
+      <p
+        class="mb-8 text-center text-xl sm:text-2xl text-[var(--color-text-secondary)] max-w-3xl mx-auto leading-relaxed"
+      >
+        I build my decks on <a
+          href="https://moxfield.com/users/JohnnyCashMoney"
+          class="text-[var(--color-accent-primary)]">Moxfield</a
+        >. Here's the last few I've been working on.
+      </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sampleDecks.map((deck) => <DeckCard deck={deck} />)}
+        {decks.slice(0, 9).map((deck) => <DeckCard deck={deck} />)}
       </div>
     </main>
   </div>
