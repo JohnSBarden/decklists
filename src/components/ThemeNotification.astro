@@ -1,78 +1,78 @@
----
-// Importing types
-import type { Theme, ThemeConfig, ThemeChangeEvent } from '../types/theme';
----
-
-<div id="theme-notification" class="fixed bottom-4 left-4 z-50 p-4 rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-sm text-[var(--color-text-primary)] hidden">
+<div
+  id="theme-notification"
+  class="fixed bottom-4 left-4 z-50 p-4 rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-sm text-[var(--color-text-primary)] hidden"
+>
   <p class="flex items-center gap-2">
     <span id="theme-icon" class="text-lg">🌑</span>
-    <span>Using <span id="theme-name" class="font-semibold">Dark</span> theme</span>
+    <span
+      >Using <span id="theme-name" class="font-semibold">Dark</span> theme</span
+    >
   </p>
 </div>
 
 <script>
-import type { Theme, ThemeConfig, ThemeChangeEvent } from '../types/theme';
+  import type { ThemeConfig, ThemeChangeEvent } from "../types/theme";
 
-const notification = document.getElementById('theme-notification');
-const themeIcon = document.getElementById('theme-icon');
-const themeName = document.getElementById('theme-name');
+  const notification = document.getElementById("theme-notification");
+  const themeIcon = document.getElementById("theme-icon");
+  const themeName = document.getElementById("theme-name");
 
-// Theme configuration
-const themes: ThemeConfig = {
-  white: { name: 'Plains', icon: '☀️', isDark: false },
-  blue: { name: 'Island', icon: '🌊', isDark: true },
-  black: { name: 'Swamp', icon: '🌑', isDark: true },
-  red: { name: 'Mountain', icon: '🔥', isDark: false },
-  green: { name: 'Forest', icon: '🌳', isDark: false }
-};
+  // Theme configuration
+  const themes: ThemeConfig = {
+    white: { name: "Plains", icon: "☀️", isDark: false },
+    blue: { name: "Island", icon: "🌊", isDark: true },
+    black: { name: "Swamp", icon: "🌑", isDark: true },
+    red: { name: "Mountain", icon: "🔥", isDark: false },
+    green: { name: "Forest", icon: "🌳", isDark: false },
+  };
 
-// Check system theme preference
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  // Check system theme preference
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-// Update notification based on current theme
-function updateNotification(themeId: string) {
-  const theme = themes[themeId];
-  if (!theme) return;
+  // Update notification based on current theme
+  function updateNotification(themeId: string) {
+    const theme = themes[themeId];
+    if (!theme) return;
 
-  if (theme.isDark) {
-    notification?.classList.remove('hidden');
-    if (themeIcon) themeIcon.textContent = theme.icon;
-    if (themeName) themeName.textContent = theme.name;
-  } else {
-    notification?.classList.add('hidden');
+    if (theme.isDark) {
+      notification?.classList.remove("hidden");
+      if (themeIcon) themeIcon.textContent = theme.icon;
+      if (themeName) themeName.textContent = theme.name;
+    } else {
+      notification?.classList.add("hidden");
+    }
   }
-}
 
-// Set initial theme based on system preference
-function initializeTheme() {
-  const savedTheme = localStorage.getItem('theme');
-  if (!savedTheme) {
-    const systemTheme = prefersDark.matches ? 'black' : 'white';
-    document.documentElement.setAttribute('data-theme', systemTheme);
-    localStorage.setItem('theme', systemTheme);
-    updateNotification(systemTheme);
-  } else {
-    updateNotification(savedTheme);
+  // Set initial theme based on system preference
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+      const systemTheme = prefersDark.matches ? "black" : "white";
+      document.documentElement.setAttribute("data-theme", systemTheme);
+      localStorage.setItem("theme", systemTheme);
+      updateNotification(systemTheme);
+    } else {
+      updateNotification(savedTheme);
+    }
   }
-}
 
-// Listen for system theme changes
-prefersDark.addEventListener('change', (e) => {
-  const savedTheme = localStorage.getItem('theme');
-  if (!savedTheme) {
-    const systemTheme = e.matches ? 'black' : 'white';
-    document.documentElement.setAttribute('data-theme', systemTheme);
-    localStorage.setItem('theme', systemTheme);
-    updateNotification(systemTheme);
-  }
-});
+  // Listen for system theme changes
+  prefersDark.addEventListener("change", (e) => {
+    const savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+      const systemTheme = e.matches ? "black" : "white";
+      document.documentElement.setAttribute("data-theme", systemTheme);
+      localStorage.setItem("theme", systemTheme);
+      updateNotification(systemTheme);
+    }
+  });
 
-// Initialize theme
-initializeTheme();
+  // Initialize theme
+  initializeTheme();
 
-// Listen for theme changes
-document.addEventListener('themeChanged', ((e: ThemeChangeEvent) => {
-  const newTheme = e.detail.theme;
-  updateNotification(newTheme);
-}) as EventListener);
+  // Listen for theme changes
+  document.addEventListener("themeChanged", ((e: ThemeChangeEvent) => {
+    const newTheme = e.detail.theme;
+    updateNotification(newTheme);
+  }) as EventListener);
 </script>

@@ -1,6 +1,7 @@
 ---
 // Layout component for site-wide styles and structure
 import "../styles/global.css";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="en" data-theme="black">
@@ -12,9 +13,12 @@ import "../styles/global.css";
     <meta name="color-scheme" content="dark light" />
   </head>
   <body
-    class="[background:var(--gradient-background)] min-h-screen text-[var(--color-text-primary)] font-sans no-scrollbar"
+    class="[background:var(--gradient-background)] min-h-screen text-[var(--color-text-primary)] font-sans no-scrollbar flex flex-col"
   >
-    <slot />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
     <!-- <ThemeNotification /> -->
   </body>
 </html>
