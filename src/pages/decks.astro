@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import DeckCard from "../components/DeckCard.astro";
 import Navigation from "@/components/Navigation.astro";
+import DeckListIsland from "../components/DeckListIsland.tsx";
 import type { Deck } from "../types/deck";
 import { lastModified } from "@/helpers/dateutils";
 
-// Fetch decks from Moxfield API
+// Fetch initial decks for SSR
 async function fetchDecks(): Promise<Deck[]> {
   try {
     const response = await fetch(
@@ -38,7 +38,7 @@ async function fetchDecks(): Promise<Deck[]> {
   }
 }
 
-const decks = await fetchDecks();
+const initialDecks = await fetchDecks();
 ---
 
 <Layout title="Decklists">
@@ -61,9 +61,7 @@ const decks = await fetchDecks();
         >. Here's the last few I've been working on.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {decks.slice(0, 9).map((deck) => <DeckCard deck={deck} />)}
-      </div>
+      <DeckListIsland client:load initialDecks={initialDecks} />
     </main>
   </div>
 </Layout>
