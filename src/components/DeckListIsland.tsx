@@ -1,5 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { Deck } from '../types/deck';
+
+const formatRelativeTime = (dateString: string): string => {
+  const lastUpdated = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(now.getTime() - lastUpdated.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 1) return "Last modified yesterday";
+  if (diffDays < 7) return `Last modified ${diffDays} days ago`;
+  if (diffDays < 30) return `Last modified ${Math.floor(diffDays / 7)} week${Math.floor(diffDays / 7) === 1 ? '' : 's'} ago`;
+  if (diffDays < 365) return `Last modified ${Math.floor(diffDays / 30)} month${Math.floor(diffDays / 30) === 1 ? '' : 's'} ago`;
+  return `Last modified ${Math.floor(diffDays / 365)} year${Math.floor(diffDays / 365) === 1 ? '' : 's'} ago`;
+};
 
 interface DeckListIslandProps {
   initialDecks: Deck[];
@@ -27,9 +40,6 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
           ? deck.format.charAt(0).toUpperCase() + deck.format.slice(1)
           : "Commander",
         lastUpdatedAtUtc: deck.lastUpdatedAtUtc,
-        description: deck.lastUpdatedAtUtc 
-          ? new Date(deck.lastUpdatedAtUtc).toLocaleDateString()
-          : "",
         colors: deck.colors || [],
         image: deck.mainCardId
           ? `https://assets.moxfield.net/cards/card-${deck.mainCardId}-art_crop.webp`
@@ -61,9 +71,16 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
     };
   }, []);
 
+  const hydratedDecks = useMemo(() => {
+    return decks.map(deck => ({
+      ...deck,
+      relativeTime: deck.lastUpdatedAtUtc ? formatRelativeTime(deck.lastUpdatedAtUtc) : ''
+    }));
+  }, [decks]);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {decks.slice(0, 9).map((deck) => (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {hydratedDecks.slice(0, 9).map((deck) => (
         <div key={deck.id} className="bg-[var(--color-bg-secondary)] rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
           {deck.image && (
             <img 
@@ -78,8 +95,8 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
           <p className="text-[var(--color-text-secondary)] mb-2">
             {deck.format}
           </p>
-          <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-            {deck.description}
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            {deck.relativeTime}
           </p>
           <a
             href={deck.link}

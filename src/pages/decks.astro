@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Navigation from "@/components/Navigation.astro";
 import DeckListIsland from "../components/DeckListIsland.tsx";
 import type { Deck } from "../types/deck";
-import { lastModified } from "@/helpers/dateutils";
 
 // Fetch initial decks for SSR
 async function fetchDecks(): Promise<Deck[]> {
@@ -25,7 +24,6 @@ async function fetchDecks(): Promise<Deck[]> {
         ? deck.format.charAt(0).toUpperCase() + deck.format.slice(1)
         : "Commander",
       lastUpdatedAtUtc: deck.lastUpdatedAtUtc,
-      description: lastModified(deck) || "",
       colors: deck.colors || [],
       image: deck.mainCardId
         ? `https://assets.moxfield.net/cards/card-${deck.mainCardId}-art_crop.webp`
