@@ -68,9 +68,13 @@ import BackgroundPattern from "../components/BackgroundPattern.astro";
           <div class="mt-8 flex justify-center">
             <a
               href="/decks"
-              class="inline-block px-8 py-3 [background:var(--gradient-button)] rounded-lg font-bold text-[var(--color-text-primary)] shadow-lg hover:shadow-[var(--color-button-hover-shadow)] hover:shadow-opacity-25 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900 transform hover:scale-105 transition-all duration-300"
+              class="transform hover:scale-105 transition-all duration-300"
             >
-              Explore My Decks
+              <button
+                class="px-8 py-3 [background:var(--gradient-button)] rounded-lg font-bold text-[var(--color-text-primary)] shadow-lg hover:shadow-[var(--color-button-hover-shadow)] hover:shadow-opacity-25 focus:outline-none focus:ring-2 focus:ring-[var(--color-button-focus-ring)] focus:ring-offset-2 focus:ring-offset-slate-900"
+              >
+                Explore My Decks
+              </button>
             </a>
           </div>
         </div>

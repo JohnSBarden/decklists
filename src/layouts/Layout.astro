@@ -2,27 +2,14 @@
 // Layout component for site-wide styles and structure
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
-
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const {
-  title = "Johnny CashMoney",
-  description = "Magic: The Gathering decklists by JohnnyCashMoney — Commander, Standard, and more.",
-} = Astro.props;
-
-const pageTitle = title === "Johnny CashMoney" ? title : `${title} | Johnny CashMoney`;
 ---
 
 <html lang="en" data-theme="black" class="h-full">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Johnny CashMoney</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="color-scheme" content="dark light" />
   </head>
   <body
