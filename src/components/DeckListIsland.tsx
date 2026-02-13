@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Deck } from '../types/deck';
 
 const formatRelativeTime = (dateString: string): string => {
@@ -7,6 +7,7 @@ const formatRelativeTime = (dateString: string): string => {
   const diffTime = Math.abs(now.getTime() - lastUpdated.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+  if (diffDays === 0) return "Last modified today";
   if (diffDays === 1) return "Last modified yesterday";
   if (diffDays < 7) return `Last modified ${diffDays} days ago`;
   if (diffDays < 30) return `Last modified ${Math.floor(diffDays / 7)} week${Math.floor(diffDays / 7) === 1 ? '' : 's'} ago`;
@@ -20,6 +21,7 @@ interface DeckListIslandProps {
 
 export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
   const [decks, setDecks] = useState<Deck[]>(initialDecks);
+  const [relativeTimes, setRelativeTimes] = useState<Record<string, string>>({});
 
   const fetchDecks = async (): Promise<Deck[]> => {
     try {
@@ -52,6 +54,22 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
     }
   };
 
+  // Compute relative times client-side only to avoid stale build-time values
+  const updateRelativeTimes = useCallback((deckList: Deck[]) => {
+    const times: Record<string, string> = {};
+    for (const deck of deckList) {
+      if (deck.lastUpdatedAtUtc) {
+        times[deck.id] = formatRelativeTime(deck.lastUpdatedAtUtc);
+      }
+    }
+    setRelativeTimes(times);
+  }, []);
+
+  // Calculate relative times on mount (client-side) and when decks change
+  useEffect(() => {
+    updateRelativeTimes(decks);
+  }, [decks, updateRelativeTimes]);
+
   // Auto-refresh every 2 minutes to get fresh data
   useEffect(() => {
     const refreshDecks = async () => {
@@ -71,21 +89,15 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
     };
   }, []);
 
-  const hydratedDecks = useMemo(() => {
-    return decks.map(deck => ({
-      ...deck,
-      relativeTime: deck.lastUpdatedAtUtc ? formatRelativeTime(deck.lastUpdatedAtUtc) : ''
-    }));
-  }, [decks]);
-
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {hydratedDecks.slice(0, 9).map((deck) => (
+      {decks.slice(0, 9).map((deck) => (
         <div key={deck.id} className="bg-[var(--color-bg-secondary)] rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
           {deck.image && (
             <img 
               src={deck.image} 
-              alt={deck.name}
+              alt={`Card art for ${deck.name}`}
+              loading="lazy"
               className="w-full h-48 object-cover rounded-lg mb-4"
             />
           )}
@@ -96,7 +108,7 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
             {deck.format}
           </p>
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-            {deck.relativeTime}
+            {relativeTimes[deck.id] ?? ''}
           </p>
           <a
             href={deck.link}
