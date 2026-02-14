@@ -2,41 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Navigation from "@/components/Navigation.astro";
 import DeckListIsland from "../components/DeckListIsland.tsx";
-import type { Deck } from "../types/deck";
-
-// Fetch initial decks for SSR
-async function fetchDecks(): Promise<Deck[]> {
-  try {
-    const response = await fetch(
-      "https://api.moxfield.com/v2/users/JohnnyCashMoney/decks"
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // Transform Moxfield API response to match our Deck type
-    return data.data.map((deck: any) => ({
-      id: deck.publicId,
-      name: deck.name,
-      format: deck.format
-        ? deck.format.charAt(0).toUpperCase() + deck.format.slice(1)
-        : "Commander",
-      lastUpdatedAtUtc: deck.lastUpdatedAtUtc,
-      colors: deck.colors || [],
-      image: deck.mainCardId
-        ? `https://assets.moxfield.net/cards/card-${deck.mainCardId}-art_crop.webp`
-        : undefined,
-      link: `https://moxfield.com/decks/${deck.publicId}`,
-    }));
-  } catch (error) {
-    console.error("Error fetching decks:", error);
-    return [];
-  }
-}
-
-const initialDecks = await fetchDecks();
 ---
 
 <Layout title="Decklists">
@@ -59,7 +24,7 @@ const initialDecks = await fetchDecks();
         >. Here's the last few I've been working on.
       </p>
 
-      <DeckListIsland client:load initialDecks={initialDecks} />
+      <DeckListIsland client:load initialDecks={[]} />
     </main>
   </div>
 </Layout>
