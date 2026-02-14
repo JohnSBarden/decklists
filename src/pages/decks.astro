@@ -2,43 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navigation from "@/components/Navigation.astro";
 import DeckListIsland from "../components/DeckListIsland.tsx";
-import { decks as staticDecks } from "../data/decks";
-import type { Deck } from "../types/deck";
-
-// Fetch decks from Moxfield at build/SSR time
-// Falls back to static data if the API is unreachable (e.g., Cloudflare blocking)
-async function fetchDecks(): Promise<Deck[]> {
-  try {
-    const response = await fetch(
-      "https://api.moxfield.com/v2/users/JohnnyCashMoney/decks"
-    );
-    if (!response.ok) {
-      console.warn(`Moxfield API returned ${response.status}, using static deck data`);
-      return staticDecks;
-    }
-
-    const data = await response.json();
-
-    return data.data.map((deck: any) => ({
-      id: deck.publicId,
-      name: deck.name,
-      format: deck.format
-        ? deck.format.charAt(0).toUpperCase() + deck.format.slice(1)
-        : "Commander",
-      lastUpdatedAtUtc: deck.lastUpdatedAtUtc,
-      colors: deck.colors || [],
-      image: deck.mainCardId
-        ? `https://assets.moxfield.net/cards/card-${deck.mainCardId}-art_crop.webp`
-        : undefined,
-      link: `https://moxfield.com/decks/${deck.publicId}`,
-    }));
-  } catch (error) {
-    console.warn("Moxfield API unreachable, using static deck data:", error);
-    return staticDecks;
-  }
-}
-
-const initialDecks = await fetchDecks();
+import { decks } from "../data/decks";
 ---
 
 <Layout title="Decklists">
@@ -61,7 +25,7 @@ const initialDecks = await fetchDecks();
         >. Here's the last few I've been working on.
       </p>
 
-      <DeckListIsland client:load initialDecks={initialDecks} />
+      <DeckListIsland client:load initialDecks={decks} />
     </main>
   </div>
 </Layout>
