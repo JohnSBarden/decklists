@@ -11,6 +11,23 @@ import Footer from "../components/Footer.astro";
     <title>Johnny CashMoney</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="color-scheme" content="dark light" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script is:inline>
+      // Apply theme immediately to prevent FoUC
+      (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      })();
+    </script>
+    <style is:inline>
+      /* Critical: prevent flash by hiding body until styles load */
+      html:not([data-theme]) { visibility: hidden; }
+      html[data-theme] { visibility: visible; }
+    </style>
   </head>
   <body
     class="[background:var(--gradient-background)] h-full text-[var(--color-text-primary)] font-sans no-scrollbar flex flex-col"
