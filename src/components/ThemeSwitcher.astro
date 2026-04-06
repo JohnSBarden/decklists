@@ -66,6 +66,7 @@ document.addEventListener('click', (e) => {
   const target = e.target as HTMLElement;
   if (!menuButton?.contains(target) && !menu?.contains(target)) {
     menuButton?.setAttribute('aria-expanded', 'false');
+    menu?.classList.add('hidden');
   }
 });
 
@@ -79,6 +80,7 @@ document.querySelectorAll('[data-theme-value]').forEach(button => {
       updateThemeIcon(theme as Mana);
       // Close menu after selection
       menuButton?.setAttribute('aria-expanded', 'false');
+      menu?.classList.add('hidden');
       // Dispatch theme change event
       document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
     }

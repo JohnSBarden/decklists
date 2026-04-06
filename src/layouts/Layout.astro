@@ -2,13 +2,19 @@
 // Layout component for site-wide styles and structure
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <html lang="en" data-theme="black" class="h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Johnny CashMoney</title>
+    <title>{title ? `${title} | Johnny CashMoney` : "Johnny CashMoney"}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="color-scheme" content="dark light" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

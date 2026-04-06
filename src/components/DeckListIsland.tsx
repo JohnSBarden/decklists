@@ -57,14 +57,16 @@ export default function DeckListIsland({ initialDecks }: DeckListIslandProps) {
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
             {relativeTimes[deck.id] ?? ''}
           </p>
-          <a
-            href={deck.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-[var(--color-accent-primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--color-accent-secondary)] transition-colors"
-          >
-            View Deck
-          </a>
+          {deck.link && (
+            <a
+              href={deck.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[var(--color-accent-primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--color-accent-secondary)] transition-colors"
+            >
+              View Deck
+            </a>
+          )}
         </div>
       ))}
     </div>
